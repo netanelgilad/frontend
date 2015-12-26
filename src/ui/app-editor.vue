@@ -1,19 +1,18 @@
 <template>
   <div id="container">
-    <header class="top-bar">
-      <editor-actions></editor-actions>
-    </header>
-    <content>
-      <div class="slot">
+    <template v-if="components.length > 0">
+      <header class="top-bar">
+        <editor-actions></editor-actions>
+      </header>
+      <content>
         <components-list :components="components" :current-component="currentComponent"></components-list>
-      </div>
-      <div class="slot">
-        <template-editor></template-editor>
-      </div>
-      <div class="slot">
-        <component-preview></component-preview>
-      </div>
-    </content>
+        <template-editor :current-component="currentComponent" class="slot"></template-editor>
+        <component-preview :current-component="currentComponent" class="slot"></component-preview>
+      </content>
+    </template>
+    <template v-else>
+      <component-creator-dialog></component-creator-dialog>
+    </template>
   </div>
 </template>
 
@@ -22,6 +21,7 @@
   import TemplateEditor from './template-editor.vue'
   import EditorActions from './editor-actions.vue'
   import ComponentsList from './components-list.vue'
+  import ComponentCreatorDialog from './component-creator-dialog.vue'
 
   export default {
     props: ['components', 'currentComponent'],
@@ -29,7 +29,8 @@
       ComponentPreview,
       TemplateEditor,
       EditorActions,
-      ComponentsList
+      ComponentsList,
+      ComponentCreatorDialog
     }
   }
 </script>

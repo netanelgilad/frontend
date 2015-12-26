@@ -1,3 +1,11 @@
 <template>
-  <p>Component Preview</p>
+  <div>
+    {{{ currentComponent.template }}}
+  </div>
 </template>
+
+<script>
+  export default {
+    props: ['currentComponent']
+  }
+</script>

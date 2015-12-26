@@ -1,16 +1,29 @@
 <template>
   <ul class="actions">
-    <li @click="action('renderPreview')">Refresh</li> <!-- TODO: need a better way to call actions -->
-    <li><input type="text" v-model="newComponentName" /></li>
-    <li @click="action('createNewComponent', newComponentName)">Create</li>
+    <li>
+      <input type="text" v-model="newComponentName"
+             @keyup.enter="createComponent()"/>
+    </li>
+    <li>
+      <button @click="createComponent()">Create</button>
+    </li>
   </ul>
 </template>
 
 <script>
+  import Action from '../action'
+
   export default {
     data () {
       return {
         newComponentName: ''
+      }
+    },
+    methods: {
+      // TODO: think of a way that you do not need to write code for this kind of logic
+      createComponent () {
+        Action('createNewComponent')(this.$data.newComponentName)
+        this.$data.newComponentName = ''
       }
     }
   }
