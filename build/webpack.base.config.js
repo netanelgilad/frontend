@@ -27,6 +27,10 @@ module.exports = {
           // fallback to file-loader with this naming scheme
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?.*)?$/,
+        loader: 'file-loader'
       }
     ]
   },

@@ -9,7 +9,9 @@
     "test": "karma start build/karma.conf.js"
   },
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "brace": "^0.7.0",
+    "jquery": "^2.1.4",
     "underscore": "^1.8.3",
     "vue": "^1.0.0"
   },
@@ -23,6 +25,7 @@
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
+    "expose-loader": "^0.7.1",
     "file-loader": "^0.8.4",
     "function-bind": "^1.0.2",
     "inject-loader": "^2.0.1",
@@ -33,6 +36,8 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-spec-reporter": "0.0.23",
     "karma-webpack": "^1.7.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
     "phantomjs": "^1.9.19",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.0",

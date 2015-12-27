@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Action from './action'
-import AppEditor from './ui/app-editor.vue'
+import App from './ui/app.vue'
 import { findWhere } from 'underscore'
 import './ui/directives/clear-on-input.vue'
 
@@ -27,7 +27,9 @@ Action('setCurrentComponent', (name) => {
   let comp = findWhere(stores.components, {name})
   stores.currentComponent = comp
 })
+
 Vue.config.debug = true
+
 Vue.mixin({
   methods: {
     action (name, ...args) {
@@ -41,5 +43,5 @@ Vue.mixin({
 new Vue({
   el: 'body',
   data: () => stores,
-  components: {AppEditor}
+  components: {App}
 })
