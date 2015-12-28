@@ -29,9 +29,12 @@
   }
 </script>
 
-<style>
-#editor {
-  display: flex;
-  flex: 1;
-}
+<style lang="less">
+  template-editor {
+    display: flex;
+
+    #editor {
+      flex: 1;
+    }
+  }
 </style>

@@ -4,7 +4,10 @@
       <components-list :components="components" :current-component="currentComponent"></components-list>
     </header>
     <content>
-      <template-editor :current-component="currentComponent" class="slot"></template-editor>
+      <div class="slot component-definition">
+        <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
+        <template-editor :current-component="currentComponent"></template-editor>
+      </div>
       <component-preview :current-component="currentComponent" class="slot"></component-preview>
     </content>
   </div>
@@ -15,6 +18,7 @@
   import TemplateEditor from './template-editor.vue'
   import EditorActions from './editor-actions.vue'
   import ComponentsList from './components-list.vue'
+  import ComponentDependencies from './component-dependencies.vue'
 
   export default {
     props: ['components', 'currentComponent'],
@@ -22,24 +26,34 @@
       ComponentPreview,
       TemplateEditor,
       EditorActions,
-      ComponentsList
+      ComponentsList,
+      ComponentDependencies
     }
   }
 </script>
 
-<style>
+<style lang="less">
   #container {
     height: 100%;
-  }
 
-  #container content {
-    height: 100%;
-    display: flex;
-  }
+    content {
+      height: 100%;
+      display: flex;
 
-  #container content .slot {
-    display: flex;
-    flex: 1;
-    flex-flow: row wrap;
+      .slot {
+        display: flex;
+        flex: 1;
+        flex-flow: row wrap;
+      }
+
+      .component-definition {
+        display: flex;
+        flex-flow: column;
+
+        template-editor {
+          flex: 1;
+        }
+      }
+    }
   }
 </style>

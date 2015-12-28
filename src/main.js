@@ -1,32 +1,8 @@
 import Vue from 'vue'
-import Action from './action'
 import App from './ui/app.vue'
-import { findWhere } from 'underscore'
-import './ui/directives/clear-on-input.vue'
-
-let stores = {
-  components: [],
-  currentComponent: {}
-}
-
-Action('createNewComponent', (name) => {
-  let comp = {
-    name,
-    template: ''
-  }
-  stores.components.push(comp)
-  stores.currentComponent = comp
-})
-
-Action('setComponentTemplate', (name, template) => {
-  let comp = findWhere(stores.components, {name})
-  comp.template = template
-})
-
-Action('setCurrentComponent', (name) => {
-  let comp = findWhere(stores.components, {name})
-  stores.currentComponent = comp
-})
+import './logic/components'
+import stores from './logic/stores'
+import Action from './action'
 
 Vue.config.debug = true
 
