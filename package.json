@@ -12,6 +12,7 @@
     "bootstrap": "^3.3.6",
     "brace": "^0.7.0",
     "jquery": "^2.1.4",
+    "raw-loader": "^0.5.1",
     "underscore": "^1.8.3",
     "vue": "^1.0.0"
   },

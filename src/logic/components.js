@@ -1,20 +1,17 @@
 import Action from '../action'
 import stores from './stores'
+import Component from './component'
 import { findWhere } from 'underscore'
 
 Action('createNewComponent', (name) => {
-  let comp = {
-    name,
-    template: '',
-    dependencies: []
-  }
+  let comp = new Component(name)
   stores.components.push(comp)
   stores.currentComponent = comp
 })
 
 Action('setComponentTemplate', (name, template) => {
   let comp = findWhere(stores.components, {name})
-  comp.template = template
+  comp.setTemplate(template)
 })
 
 Action('setCurrentComponent', (name) => {
@@ -23,5 +20,5 @@ Action('setCurrentComponent', (name) => {
 })
 
 Action('addDependencyToCurrentComponent', (name) => {
-  stores.currentComponent.dependencies.push(name)
+  stores.currentComponent.addDependency(name)
 })
