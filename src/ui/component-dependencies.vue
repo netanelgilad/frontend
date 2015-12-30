@@ -1,11 +1,11 @@
 <template>
  <ul>
    <li>Dependencies:</li>
-   <li v-for="dependency in component.dependencies">
+   <li v-for="dependency in component.dependencies" class="dependency">
      {{ dependency }}
    </li>
    <li>
-     <select v-model="selectedDependency">
+     <select v-model="selectedDependency" class="available-dependencies">
        <option :value="-1"></option>
        <option v-for="component in availableDependencies" :value="component">
          {{component}}

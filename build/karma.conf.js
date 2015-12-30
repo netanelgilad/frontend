@@ -17,7 +17,6 @@ module.exports = function (config) {
     webpack: webpackConf,
     webpackMiddleware: {
       noInfo: true
-    },
-    singleRun: true
+    }
   })
 }

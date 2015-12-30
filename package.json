@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.config.js",
     "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
-    "test": "karma start build/karma.conf.js"
+    "test": "karma start build/karma.conf.js",
+    "test-ci": "karma start build/karma.conf.js --single-run"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
