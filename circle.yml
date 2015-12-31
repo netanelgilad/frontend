@@ -1,6 +1,9 @@
 machine:
   node:
     version: 4
+  environment:
+    COVERALLS_SERVICE_NAME: CircleCI
+    COVERALLS_REPO_TOKEN: nkg3MUKYaQF5YFhrrClSW5Axl8YJK2kmt
 
 test:
   override:
