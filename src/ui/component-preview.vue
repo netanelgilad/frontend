@@ -1,12 +1,14 @@
 <template>
   <div id="iframe-container">
+    <iframe>
+    </iframe>
   </div>
 </template>
 
 <script>
   import $ from 'jquery'
   import { template } from 'underscore'
-  import previewTemplate from 'raw!./component-preview-template.html'
+  import previewTemplate from '../assets/component-preview-template'
 
   export default {
     props: ['currentComponent'],

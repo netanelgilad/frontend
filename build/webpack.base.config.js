@@ -1,3 +1,5 @@
+var path = require('path')
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -34,16 +36,17 @@ module.exports = {
       }
     ]
   },
-  // vue-loader config:
-  // lint all JavaScript inside *.vue files with ESLint
-  // make sure to adjust your .eslintrc
+// vue-loader config:
+// lint all JavaScript inside *.vue files with ESLint
+// make sure to adjust your .eslintrc
   vue: {
     loaders: {
       js: 'babel!eslint'
     }
-  },
-  // configure babel-loader (for both .js and .vue files).
-  // see https://babeljs.io/docs/usage/options/
+  }
+  ,
+// configure babel-loader (for both .js and .vue files).
+// see https://babeljs.io/docs/usage/options/
   babel: {
     presets: ['es2015', 'stage-0'],
     plugins: ['transform-runtime']
