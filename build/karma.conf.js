@@ -35,12 +35,12 @@ module.exports = function (config) {
         { type: 'text-summary' },
         {
           type: 'html',
-          dir : process.env.$CIRCLE_ARTIFACTS || 'results/coverage'
+          dir : process.env.CIRCLE_ARTIFACTS || 'results/coverage'
         }
       ]
     },
     junitReporter: {
-      outputDir: 'results/test-results'
+      outputDir: process.env.CIRCLE_TEST_REPORTS || 'results/test-results'
     }
   })
 }
