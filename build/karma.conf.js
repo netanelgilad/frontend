@@ -33,7 +33,7 @@ module.exports = function (config) {
     coverageReporter: {
       reporters: [
         { type: 'text-summary' },
-        { type: 'lcov', dir: 'results/coverage', subdir: 'lcov' },
+        { type: 'lcov', dir: (process.env.CIRCLE_ARTIFACTS || '.') + '/results/coverage', subdir: 'lcov' },
       ]
     },
     junitReporter: {
