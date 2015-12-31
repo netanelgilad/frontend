@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.config.js",
     "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
     "test": "karma start build/karma.conf.js",
-    "test-ci": "karma start build/karma.conf.js --single-run && cat ./build/results/coverage/lcov/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test-ci": "karma start build/karma.conf.js --single-run && cat $CIRCLE_ARTIFACTS/results/coverage/lcov/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
