@@ -3,10 +3,18 @@
     <li v-for="component in components"
         :class="{ 'active' : component.name === currentComponent.name }"
         role="presentation">
-      <a @click="action('setCurrentComponent', component.name)">{{ component.name }}</a>
+      <a @click="action('setCurrentComponent', component.name)">
+        {{ component.name }}
+        <span v-show="!component.isSaved">*</span>
+      </a>
     </li>
     <li data-toggle="modal" data-target="#open-create-component-modal">
       <a>+</a>
+    </li>
+    <li>
+      <a v-show="!currentComponent.isSaved" transition="bounce" @click="action('saveCurrentComponent')">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+      </a>
     </li>
   </ul>
   <div id="open-create-component-modal" class="modal fade" role="dialog">
@@ -44,6 +52,38 @@
   components-list {
     .nav-tabs > li.active a, .nav-tabs > li.active a:hover {
       background-color: salmon;
+    }
+
+    .bounce-enter {
+      animation: bounce-in .5s;
+    }
+
+    .bounce-leave {
+      animation: bounce-out .5s;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounce-out {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(0);
+      }
     }
   }
 </style>

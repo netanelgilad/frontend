@@ -1,4 +1,4 @@
 export default {
-  components: [],
-  currentComponent: {}
+  components: {},
+  currentComponent: undefined
 }

@@ -12,8 +12,16 @@
 
   export default {
     props: ['currentComponent'],
+    ready () {
+      this.updatePreview(this.$data.currentComponent)
+    },
     watch: {
       currentComponent: { handler: function (newVal) {
+        this.updatePreview(newVal)
+      }, deep: true}
+    },
+    methods: {
+      updatePreview (component) {
         // create the iframe and attach it to the document
         var iframe = document.createElement('iframe')
         iframe.setAttribute('scrolling', 'no')
@@ -23,9 +31,9 @@
 
         let iDoc = iframe.contentDocument
         iDoc.open()
-        iDoc.write(template(previewTemplate)({name: newVal.name, comp: JSON.stringify(newVal.getComponentDefinition())}))
+        iDoc.write(template(previewTemplate)({name: component.name, comp: JSON.stringify(component.getComponentDefinition())}))
         iDoc.close()
-      }, deep: true}
+      }
     }
   }
 </script>

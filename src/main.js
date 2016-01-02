@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './ui/app.vue'
-import './logic/components'
+import { initComponents } from './logic/components'
 import stores from './logic/stores'
 import Action from './action'
 
@@ -15,9 +15,11 @@ Vue.mixin({
   replace: false
 })
 
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  data: () => stores,
-  components: {App}
+initComponents().then(() => {
+  /* eslint-disable no-new */
+  new Vue({
+    el: 'body',
+    data: () => stores,
+    components: {App}
+  })
 })

@@ -2,10 +2,11 @@ import stores from './stores'
 import { findWhere } from 'underscore'
 
 export default class Component {
-  constructor (name) {
+  constructor ({ name, template: template = '', dependencies: dependencies = [] }) {
     this.name = name
-    this.template = ''
-    this.dependencies = []
+    this.template = template
+    this.dependencies = dependencies
+    this.isSaved = true
   }
 
   setTemplate (newValue) {

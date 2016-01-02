@@ -1,7 +1,9 @@
 <template>
   <div id="container">
     <header class="top-bar">
-      <components-list :components="components" :current-component="currentComponent"></components-list>
+      <components-list
+          :components="components"
+          :current-component="currentComponent"></components-list>
     </header>
     <content>
       <div class="slot component-definition">

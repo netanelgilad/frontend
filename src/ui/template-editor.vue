@@ -16,14 +16,22 @@
       this.editor.getSession().setMode('ace/mode/html')
       this.editor.setTheme('ace/theme/cobalt')
       this.editor.$blockScrolling = Infinity
+      this.editor.setValue(this.$data.currentComponent.template || '', -1)
 
-      this.editor.on('input', () => {
-        Action('setComponentTemplate')(this.$data.currentComponent.name, this.editor.getValue())
-      })
+      this.listenOnInput()
     },
     watch: {
-      currentComponent (val, oldVal) {
+      currentComponent (val) {
+        this.editor.removeAllListeners('change')
         this.editor.setValue(val.template || '', -1)
+        this.listenOnInput()
+      }
+    },
+    methods: {
+      listenOnInput () {
+        this.editor.on('change', () => {
+          Action('setCurrentComponentTemplate')(this.editor.getValue())
+        })
       }
     }
   }

@@ -1,6 +1,8 @@
 <template>
-  <template v-if="components.length > 0">
-    <components-editor :components="components" :current-component="currentComponent"></components-editor>
+  <template v-if="getComponentsCount() > 0">
+    <components-editor
+        :components="components"
+        :current-component="currentComponent"></components-editor>
   </template>
   <template v-else>
     <div class="centered-container">
@@ -14,12 +16,18 @@
   import ComponentCreatorDialog from './component-creator-dialog.vue'
   import 'expose-loader?$!expose-loader?jQuery!jquery'
   import 'bootstrap/dist/js/bootstrap.min'
+  import { keys } from 'underscore'
 
   export default {
     props: ['components', 'currentComponent'],
     components: {
       ComponentsEditor,
       ComponentCreatorDialog
+    },
+    methods: {
+      getComponentsCount () {
+        return keys(this.$data.components).length
+      }
     }
   }
 </script>
