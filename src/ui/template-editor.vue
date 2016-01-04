@@ -1,38 +1,17 @@
 <template>
-  <div id="editor">
-  </div>
+  <ace-editor
+      mode="html" theme="cobalt"
+      :value.sync="currentComponent.template"
+      @change="action('setCurrentComponentTemplate', currentComponent.template)"></ace-editor>
 </template>
 
 <script>
-  import ace from 'brace'
-  import 'brace/mode/html'
-  import 'brace/theme/cobalt'
-  import Action from '../action'
+  import AceEditor from './ace-editor.vue'
 
   export default {
     props: ['currentComponent'],
-    ready () {
-      this.editor = ace.edit('editor')
-      this.editor.getSession().setMode('ace/mode/html')
-      this.editor.setTheme('ace/theme/cobalt')
-      this.editor.$blockScrolling = Infinity
-      this.editor.setValue(this.$data.currentComponent.template || '', -1)
-
-      this.listenOnInput()
-    },
-    watch: {
-      currentComponent (val) {
-        this.editor.removeAllListeners('change')
-        this.editor.setValue(val.template || '', -1)
-        this.listenOnInput()
-      }
-    },
-    methods: {
-      listenOnInput () {
-        this.editor.on('change', () => {
-          Action('setCurrentComponentTemplate')(this.editor.getValue())
-        })
-      }
+    components: {
+      AceEditor
     }
   }
 </script>
@@ -41,7 +20,7 @@
   template-editor {
     display: flex;
 
-    #editor {
+    ace-editor {
       flex: 1;
     }
   }
