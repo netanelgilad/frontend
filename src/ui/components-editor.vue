@@ -9,6 +9,7 @@
       <div class="slot component-definition">
         <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
         <template-editor :current-component="currentComponent"></template-editor>
+        <style-editor :current-component="currentComponent"></style-editor>
       </div>
       <component-preview :current-component="currentComponent" class="slot"></component-preview>
     </content>
@@ -21,6 +22,7 @@
   import EditorActions from './editor-actions.vue'
   import ComponentsList from './components-list.vue'
   import ComponentDependencies from './component-dependencies.vue'
+  import StyleEditor from './style-editor.vue'
 
   export default {
     props: ['components', 'currentComponent'],
@@ -29,7 +31,8 @@
       TemplateEditor,
       EditorActions,
       ComponentsList,
-      ComponentDependencies
+      ComponentDependencies,
+      StyleEditor
     }
   }
 </script>
@@ -53,6 +56,11 @@
         flex-flow: column;
 
         template-editor {
+          flex: 1;
+        }
+
+        style-editor {
+          margin-top:5px;
           flex: 1;
         }
       }

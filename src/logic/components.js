@@ -46,6 +46,11 @@ Action('setCurrentComponentTemplate', (template) => {
   stores.currentComponent.isSaved = false
 })
 
+Action('setCurrentComponentStyle', (style) => {
+  stores.currentComponent.setStyle(style)
+  stores.currentComponent.isSaved = false
+})
+
 Action('setCurrentComponent', (name) => {
   stores.currentComponent = stores.components[name]
 })
