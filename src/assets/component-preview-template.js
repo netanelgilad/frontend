@@ -2,6 +2,14 @@ let template = `<!DOCTYPE html>
                 <html>
                 <head>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.js"></script>
+                    <script>
+                    Vue.mixin({
+                      replace: false
+                    })
+                    </script>
+                    <style>
+                      <%= style %>
+                    </style>
                 </head>
 
                 <body>

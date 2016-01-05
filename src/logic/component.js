@@ -33,4 +33,14 @@ export default class Component {
       components: comps
     }
   }
+
+  getComputedStyle () {
+    let computedStyle = this.name + ' { ' + this.style + ' '
+    this.dependencies.forEach((dep) => {
+      let comp = findWhere(stores.components, { name: dep })
+      computedStyle += comp.getComputedStyle() + ' '
+    })
+    computedStyle += ' }\n'
+    return computedStyle
+  }
 }
