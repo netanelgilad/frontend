@@ -43,12 +43,10 @@ Action('createNewComponent', (name) => {
 
 Action('setCurrentComponentTemplate', (template) => {
   stores.currentComponent.setTemplate(template)
-  stores.currentComponent.isSaved = false
 })
 
 Action('setCurrentComponentStyle', (style) => {
   stores.currentComponent.setStyle(style)
-  stores.currentComponent.isSaved = false
 })
 
 Action('setCurrentComponent', (name) => {
@@ -57,9 +55,12 @@ Action('setCurrentComponent', (name) => {
 
 Action('addDependencyToCurrentComponent', (name) => {
   stores.currentComponent.addDependency(name)
-  stores.currentComponent.isSaved = false
 })
 
 Action('saveCurrentComponent', () => {
   components.child(stores.currentComponent.name).update(stores.currentComponent)
+})
+
+Action('addPropertyToCurrentComponent', (prop) => {
+  stores.currentComponent.addProperty(prop)
 })

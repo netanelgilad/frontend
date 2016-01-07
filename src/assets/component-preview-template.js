@@ -14,16 +14,14 @@ let template = `<!DOCTYPE html>
 
                 <body>
                     <div id="container">
-                        <<%= name %>><<%= name %>>
+                        <<%= name %> <%= properties %>><<%= name %>>
                     </div>
 
                     <script>
                         var <%= name %> = <%= comp %>;
                         new Vue({
                             el: '#container',
-                            data: {
-                                message: 'Hello Vue.js!'
-                            },
+                            <%= data %>,
                             components: {
                                 <%= name %>: <%= name %>
                             }

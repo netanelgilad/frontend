@@ -12,13 +12,25 @@
   import less from 'less'
 
   export default {
-    props: ['currentComponent'],
+    props: {
+      component: {
+        required: true,
+        type: Object
+      },
+      previewData: {
+        required: true,
+        type: Object
+      }
+    },
     ready () {
-      this.updatePreview(this.$data.currentComponent)
+      this.updatePreview(this.$data.component)
     },
     watch: {
-      currentComponent: { handler: function (newVal) {
+      component: { handler: function (newVal) {
         this.updatePreview(newVal)
+      }, deep: true},
+      previewData: { handler: function () {
+        this.updatePreview(this.$data.component)
       }, deep: true}
     },
     methods: {
@@ -40,10 +52,17 @@
         iDoc.open()
         iDoc.write(template(previewTemplate)({
           name: component.name,
-          comp: JSON.stringify(component.getComponentDefinition()),
-          style: style
+          comp: JSON.stringify(component.getComponentDefinition(), 2),
+          style: style,
+          properties: this.buildPropertiesString(component.properties),
+          data: 'data: ' + JSON.stringify(this.$data.previewData)
         }))
         iDoc.close()
+      },
+      buildPropertiesString (properties) {
+        return properties.reduce((propsString, prop) => {
+          return propsString + ':' + prop + '="' + prop + '" '
+        }, '')
       }
     }
   }
