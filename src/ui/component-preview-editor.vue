@@ -21,9 +21,6 @@
     watch: {
       component () {
         this.$set('propertiesData', {})
-      },
-      propertiesData () {
-        console.log('changeddd')
       }
     }
   }
