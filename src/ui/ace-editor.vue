@@ -2,6 +2,7 @@
   import ace from 'brace'
   import 'brace/mode/html'
   import 'brace/theme/cobalt'
+  import 'brace/mode/json'
 
   export default {
     props: {
@@ -38,7 +39,7 @@
         this.editor.on('change', () => {
           this.UPDATING_VALUE = true
           this.$data.value = this.editor.getValue()
-          this.$emit('change', this.editor.getValue())
+          this.$dispatch('change', this.editor.getValue())
         })
       }
     }
