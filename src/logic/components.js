@@ -64,3 +64,7 @@ Action('saveCurrentComponent', () => {
 Action('addPropertyToCurrentComponent', (prop) => {
   stores.currentComponent.addProperty(prop)
 })
+
+Action('addActionToCurrentComponent', (action) => {
+  stores.currentComponent.addAction(action)
+})

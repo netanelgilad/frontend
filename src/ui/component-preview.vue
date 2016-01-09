@@ -41,12 +41,16 @@
             style = output.css
           }
         })
+
         // create the iframe and attach it to the document
         let iframe = document.createElement('iframe')
         iframe.setAttribute('scrolling', 'no')
         iframe.setAttribute('frameborder', '0')
 
         $(this.$el).find('#iframe-container').empty().append(iframe)
+        $('#iframe-container').off('actionInvoked').on('actionInvoked', () => {
+          this.$emit('action-invoked')
+        })
 
         let iDoc = iframe.contentDocument
         iDoc.open()
@@ -55,7 +59,8 @@
           comp: JSON.stringify(component.getComponentDefinition(), 2),
           style: style,
           properties: this.buildPropertiesString(component.properties),
-          data: 'data: ' + JSON.stringify(this.$data.previewData)
+          data: 'data: ' + JSON.stringify(this.$data.previewData),
+          actions: JSON.stringify(component.actions)
         }))
         iDoc.close()
       },
@@ -67,3 +72,16 @@
     }
   }
 </script>
+
+<style lang="less">
+  component-preview {
+    display: flex;
+    #iframe-container {
+      display: flex;
+      flex: 1;
+      >iframe {
+        flex: 1;
+      }
+    }
+  }
+</style>

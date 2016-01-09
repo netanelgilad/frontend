@@ -1,16 +1,10 @@
 <template>
-  <ul>
-    <li>Properties</li>
-    <li v-for="property in properties">
-      <button class="property-data"
-              data-toggle="modal" data-target="#data-editor-modal"
-              @click="setCurrentProperty(property)">{{property}}</button>
-    </li>
-  </ul>
+  <button class="property-data"
+          data-toggle="modal" data-target="#data-editor-modal">Set Component State</button>
   <div class="modal fade" id="data-editor-modal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
-        <json-editor :json.sync="currentPropertyData" @input="setCurrentPropertyData(currentPropertyData)"></json-editor>
+        <json-editor :json.sync="propertiesData"></json-editor>
       </div>
     </div>
   </div>
@@ -18,6 +12,7 @@
 
 <script>
   import JsonEditor from './json-editor.vue'
+  import $ from 'jquery'
 
   export default {
     props: {
@@ -32,28 +27,13 @@
         twoWay: true
       }
     },
-    data () {
-      return {
-        currentPropertyData: ''
+    methods: {
+      open () {
+        $(this.$el).find('#data-editor-modal').modal('show')
       }
     },
     components: {
       JsonEditor
-    },
-    methods: {
-      setCurrentProperty (prop) {
-        this.currentProperty = prop
-        this.currentPropertyData = this.$data.propertiesData[prop]
-      },
-      setCurrentPropertyData (dataAsString) {
-        let data
-        try {
-          data = JSON.parse(dataAsString)
-        } catch (e) {
-          data = dataAsString
-        }
-        this.$set(`propertiesData.${this.currentProperty}`, data)
-      }
     }
   }
 </script>

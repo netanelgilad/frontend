@@ -7,13 +7,15 @@ export default class Component {
       template: template = '',
       style = '',
       dependencies: dependencies = [],
-      properties: properties = []
+      properties: properties = [],
+      actions: actions = []
     }) {
     this.name = name
     this.template = template
     this.style = style
     this.dependencies = dependencies
     this.properties = properties
+    this.actions = actions
     this.isSaved = true
   }
 
@@ -37,16 +39,21 @@ export default class Component {
     this.isSaved = false
   }
 
+  addAction (action) {
+    this.actions.push(action)
+    this.isSaved = false
+  }
+
   getComponentDefinition () {
-    let comps = {}
+    let components = {}
     this.dependencies.forEach((dep) => {
-      comps[dep] = findWhere(stores.components, { name: dep }).getComponentDefinition()
+      components[dep] = findWhere(stores.components, { name: dep }).getComponentDefinition()
     })
 
     return {
       props: this.properties,
       template: this.template,
-      components: comps
+      components
     }
   }
 
