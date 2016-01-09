@@ -32,14 +32,24 @@
   }
 </script>
 
-<style>
+<style lang="less">
   @import 'style-loader!css-loader!~bootstrap/dist/css/bootstrap.css';
   @import 'style-loader!css-loader!~bootstrap/dist/css/bootstrap-theme.css';
-  .centered-container {
+
+  app {
     display: flex;
-    width: 100%;
     height: 100%;
-    align-items: center;
-    justify-content: center;
+
+    .centered-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    components-editor {
+      flex: 1;
+    }
   }
 </style>

@@ -2,12 +2,25 @@
   import ace from 'brace'
   import 'brace/mode/html'
   import 'brace/theme/cobalt'
+  import 'brace/theme/chrome'
   import 'brace/mode/json'
 
   export default {
     props: {
       mode: String,
       theme: String,
+      showGutter: {
+        type: Boolean,
+        default: true
+      },
+      highlightActiveLine: {
+        type: Boolean,
+        default: true
+      },
+      showPrintMargin: {
+        type: Boolean,
+        default: true
+      },
       value: {
         type: String,
         twoWay: true
@@ -15,8 +28,14 @@
     },
     ready () {
       this.editor = ace.edit(this.$el)
+      this.editor.setOptions({
+        maxLines: Infinity
+      })
       this.editor.getSession().setMode(`ace/mode/${this.$data.mode}`)
       this.editor.setTheme(`ace/theme/${this.$data.theme}`)
+      this.editor.renderer.setShowGutter(this.$data.showGutter)
+      this.editor.setHighlightActiveLine(this.$data.highlightActiveLine)
+      this.editor.setShowPrintMargin(this.$data.showPrintMargin)
       this.editor.$blockScrolling = Infinity
       this.editor.setValue(this.$data.value || '', -1)
       this.UPDATING_VALUE = false

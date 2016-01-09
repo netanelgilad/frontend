@@ -1,21 +1,21 @@
 <template>
-  <div id="container">
-    <header class="top-bar">
-      <components-list
-          :components="components"
-          :current-component="currentComponent"></components-list>
-    </header>
-    <content>
-      <div class="slot component-definition">
-        <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
-        <component-properties :component="currentComponent"></component-properties>
-        <component-actions :component="currentComponent"></component-actions>
-        <template-editor :current-component="currentComponent"></template-editor>
-        <style-editor :current-component="currentComponent"></style-editor>
-      </div>
-      <component-preview-editor :component="currentComponent" class="slot"></component-preview-editor>
-    </content>
-  </div>
+  <header class="top-bar">
+    <components-list
+        :components="components"
+        :current-component="currentComponent"></components-list>
+  </header>
+  <content>
+    <div class="slot component-definition">
+      <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
+      <component-properties :component="currentComponent"></component-properties>
+      <component-actions :component="currentComponent"></component-actions>
+      <hr class="seperator" />
+      <template-editor :current-component="currentComponent"></template-editor>
+      <hr class="seperator" />
+      <style-editor :current-component="currentComponent"></style-editor>
+    </div>
+    <component-preview-editor :component="currentComponent" class="slot"></component-preview-editor>
+  </content>
 </template>
 
 <script>
@@ -44,12 +44,13 @@
 </script>
 
 <style lang="less">
-  #container {
-    height: 100%;
+  components-editor {
+    display: flex;
+    flex-flow: column;
 
     content {
-      height: 100%;
       display: flex;
+      flex: 1;
 
       .slot {
         flex: 1;
@@ -58,14 +59,24 @@
       .component-definition {
         display: flex;
         flex-flow: column;
+        padding-left: 15px;
 
         template-editor {
-          flex: 1;
+          padding-bottom: 10px;
+        }
+
+        .seperator {
+          margin: 25px auto;
+          width: 50%;
+          height: 1px;
+          border: 0;
+          background: black;
+          background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
         }
 
         style-editor {
           margin-top:5px;
-          flex: 1;
+          flex: 2;
         }
       }
     }

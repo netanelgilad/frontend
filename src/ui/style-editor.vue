@@ -1,6 +1,6 @@
 <template>
   <ace-editor
-      mode="css" theme="cobalt"
+      mode="css" theme="chrome" :show-gutter="false" :highlight-active-line="false" :show-print-margin="false"
       :value.sync="currentComponent.style"
       @change="action('setCurrentComponentStyle', currentComponent.style)"></ace-editor>
 </template>

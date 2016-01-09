@@ -6,7 +6,7 @@
     </li>
     <li>
       <input type="text" v-model="newAction" placeholder="Action name" />
-      <button @click="action('addActionToCurrentComponent', newAction)" :disabled="newAction===''">
+      <button class="btn btn-default" @click="action('addActionToCurrentComponent', newAction)" :disabled="newAction===''">
         Add
       </button>
     </li>

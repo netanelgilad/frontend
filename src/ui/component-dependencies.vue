@@ -11,7 +11,9 @@
          {{component}}
        </option>
      </select>
-     <button @click="action('addDependencyToCurrentComponent', selectedDependency)" :disabled="selectedDependency===-1">
+     <button class="btn btn-default"
+             @click="action('addDependencyToCurrentComponent', selectedDependency)"
+             :disabled="selectedDependency===-1">
        add
      </button>
    </li>

@@ -6,7 +6,7 @@
     </li>
     <li>
       <input type="text" v-model="newProperty" placeholder="Property name" />
-      <button @click="action('addPropertyToCurrentComponent', newProperty)" :disabled="newProperty===''">
+      <button class="btn btn-default" @click="action('addPropertyToCurrentComponent', newProperty)" :disabled="newProperty===''">
         Add
       </button>
     </li>
