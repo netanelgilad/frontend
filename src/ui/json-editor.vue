@@ -1,5 +1,5 @@
 <template>
-  <ace-editor mode="json" theme="cobalt" :value.sync="jsonString"></ace-editor>
+  <ace-editor mode="json" theme="chrome" :value.sync="jsonString"></ace-editor>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  <header class="top-bar">
-    <components-list
-        :components="components"
-        :current-component="currentComponent"></components-list>
-  </header>
-  <content>
+    <div class="components-sidebar">
+      <h5>components</h5>
+      <components-list
+          :components="components"
+          :current-component="currentComponent"></components-list>
+    </div>
     <div class="slot component-definition">
       <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
       <component-properties :component="currentComponent"></component-properties>
@@ -15,7 +15,6 @@
       <style-editor :current-component="currentComponent"></style-editor>
     </div>
     <component-preview-editor :component="currentComponent" class="slot"></component-preview-editor>
-  </content>
 </template>
 
 <script>
@@ -46,38 +45,33 @@
 <style lang="less">
   components-editor {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
 
-    content {
-      display: flex;
+    .slot {
       flex: 1;
+    }
 
-      .slot {
-        flex: 1;
+    .component-definition {
+      display: flex;
+      flex-flow: column;
+      padding-left: 15px;
+
+      template-editor {
+        padding-bottom: 10px;
       }
 
-      .component-definition {
-        display: flex;
-        flex-flow: column;
-        padding-left: 15px;
+      .seperator {
+        margin: 25px auto;
+        width: 50%;
+        height: 1px;
+        border: 0;
+        background: black;
+        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+      }
 
-        template-editor {
-          padding-bottom: 10px;
-        }
-
-        .seperator {
-          margin: 25px auto;
-          width: 50%;
-          height: 1px;
-          border: 0;
-          background: black;
-          background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        }
-
-        style-editor {
-          margin-top:5px;
-          flex: 2;
-        }
+      style-editor {
+        margin-top:5px;
+        flex: 2;
       }
     }
   }

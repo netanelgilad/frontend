@@ -55,7 +55,10 @@
     component-preview {
       flex: 1;
       margin: 5px;
-      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+      -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.37);
+      -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.37);
+      box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.37);
+      border: 1px solid #8e8e8e;
     }
   }
 </style>

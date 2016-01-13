@@ -1,12 +1,11 @@
 <template>
-  <ul class="nav nav-tabs">
+  <ul>
     <li v-for="component in components"
         :class="{ 'active' : component.name === currentComponent.name }"
-        role="presentation">
-      <a @click="action('setCurrentComponent', component.name)">
-        {{ component.name }}
-        <span v-show="!component.isSaved">*</span>
-      </a>
+        role="presentation"
+        @click="action('setCurrentComponent', component.name)">
+      {{ component.name }}
+      <span v-show="!component.isSaved">*</span>
     </li>
     <li data-toggle="modal" data-target="#open-create-component-modal">
       <a>+</a>
@@ -50,8 +49,18 @@
 
 <style lang="less">
   components-list {
-    .nav-tabs > li.active a, .nav-tabs > li.active a:hover {
-      background-color: salmon;
+    ul {
+      margin: 0;
+      padding: 10px;
+      >li {
+        list-style: none;
+        cursor: pointer;
+      }
+
+      >li.active {
+        color: maroon;
+        font-weight: bold;
+       }
     }
 
     .bounce-enter {

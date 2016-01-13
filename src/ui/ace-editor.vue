@@ -21,6 +21,10 @@
         type: Boolean,
         default: true
       },
+      fitToContent: {
+        type: Boolean,
+        default: false
+      },
       value: {
         type: String,
         twoWay: true
@@ -28,9 +32,13 @@
     },
     ready () {
       this.editor = ace.edit(this.$el)
-      this.editor.setOptions({
-        maxLines: Infinity
-      })
+
+      if (this.$data.fitToContent) {
+        this.editor.setOptions({
+          maxLines: Infinity
+        })
+      }
+
       this.editor.getSession().setMode(`ace/mode/${this.$data.mode}`)
       this.editor.setTheme(`ace/theme/${this.$data.theme}`)
       this.editor.renderer.setShowGutter(this.$data.showGutter)
