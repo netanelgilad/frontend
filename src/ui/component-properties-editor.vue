@@ -1,5 +1,5 @@
 <template>
-  <button class="property-data btn btn-primary"
+  <button class="property-data btn btn-raised btn-primary"
           data-toggle="modal" data-target="#data-editor-modal">Set Component State</button>
   <div class="modal fade" id="data-editor-modal" role="dialog">
     <div class="modal-dialog">

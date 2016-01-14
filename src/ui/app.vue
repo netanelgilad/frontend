@@ -14,8 +14,10 @@
 <script>
   import ComponentsEditor from './components-editor.vue'
   import ComponentCreatorDialog from './component-creator-dialog.vue'
-  import 'expose-loader?$!expose-loader?jQuery!jquery'
+  import $ from 'expose-loader?$!expose-loader?jQuery!jquery'
   import 'bootstrap/dist/js/bootstrap.min'
+  import 'bootstrap-material-design/dist/js/material.min.js'
+  import 'bootstrap-material-design/dist/js/ripples.min.js'
   import { keys } from 'underscore'
 
   export default {
@@ -23,6 +25,9 @@
     components: {
       ComponentsEditor,
       ComponentCreatorDialog
+    },
+    ready () {
+      $.material.init()
     },
     methods: {
       getComponentsCount () {
@@ -34,7 +39,12 @@
 
 <style lang="less">
   @import 'style-loader!css-loader!~bootstrap/dist/css/bootstrap.css';
-  @import 'style-loader!css-loader!~bootstrap/dist/css/bootstrap-theme.css';
+  @import 'style-loader!css-loader!~bootstrap-material-design/dist/css/bootstrap-material-design.css';
+  @import 'style-loader!css-loader!~bootstrap-material-design/dist/css/ripples.css';
+
+  body {
+    background: white;
+  }
 
   app {
     display: flex;

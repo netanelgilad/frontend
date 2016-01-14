@@ -9,7 +9,7 @@
   import $ from 'jquery'
   import { template } from 'underscore'
   import previewTemplate from '../assets/component-preview-template'
-  import less from 'less'
+  import less from 'less/lib/less'
 
   export default {
     props: {
@@ -36,7 +36,7 @@
     methods: {
       updatePreview (component) {
         let style
-        less.render(component.getComputedStyle(), (err, output) => {
+        less().render(component.getComputedStyle(), (err, output) => {
           if (!err) {
             style = output.css
           }

@@ -5,7 +5,7 @@
           :components="components"
           :current-component="currentComponent"></components-list>
     </div>
-    <div class="slot component-definition">
+    <div class="component-definition">
       <component-dependencies :component="currentComponent" :components="components"></component-dependencies>
       <component-properties :component="currentComponent"></component-properties>
       <component-actions :component="currentComponent"></component-actions>
@@ -55,6 +55,7 @@
       display: flex;
       flex-flow: column;
       padding-left: 15px;
+      width: 550px;
 
       template-editor {
         padding-bottom: 10px;

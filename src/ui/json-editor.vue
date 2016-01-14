@@ -1,5 +1,13 @@
 <template>
-  <ace-editor mode="json" theme="chrome" :value.sync="jsonString"></ace-editor>
+  <ace-editor
+      mode="json"
+      theme="chrome"
+      :show-gutter="false"
+      :value.sync="jsonString"
+      :highlight-active-line="false"
+      :fit-to-content="true"
+      :show-print-margin="false">
+  </ace-editor>
 </template>
 
 <script>
@@ -37,7 +45,7 @@
     },
     methods: {
       updateJSONString (json) {
-        this.$data.jsonString = JSON.stringify(json, null, 2)
+        this.$data.jsonString = JSON.stringify(json, null, 2) || ''
         this.jsonUpdating = true
       }
     },
@@ -50,7 +58,6 @@
 <style lang="less">
   json-editor {
     display: flex;
-    height: 500px;
 
     >ace-editor {
       flex: 1;

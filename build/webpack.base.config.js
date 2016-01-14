@@ -7,6 +7,9 @@ module.exports = {
     publicPath: 'dist/',
     filename: 'build.js'
   },
+  resolve: {
+    modulesDirectories: ['bower_components', 'node_modules']
+  },
   module: {
     loaders: [
       {
@@ -17,7 +20,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel!eslint',
         // make sure to exclude 3rd party code in node_modules
-        exclude: /node_modules/
+        exclude: [/node_modules/, /bower_components/]
       },
       {
         // edit this for additional asset file types

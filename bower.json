@@ -1,0 +1,21 @@
+{
+  "name": "frontend",
+  "description": "Developing the frontend in the frontend",
+  "main": "index.js",
+  "authors": [
+    "Netanel Gilad"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/netanelgilad/frontend",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "~0.5.7"
+  }
+}

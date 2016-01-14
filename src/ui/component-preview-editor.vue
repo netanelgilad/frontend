@@ -1,23 +1,28 @@
 <template>
-  <component-properties-editor
-      v-ref:properties-editor
-      :properties="component.properties"
-      :properties-data.sync="propertiesData"></component-properties-editor>
   <component-preview
       :component="component"
       :preview-data="propertiesData"
       @action-invoked="openPropertiesEditor()"></component-preview>
+  <div>
+    <component-properties-editor
+        v-ref:properties-editor
+        :properties="component.properties"
+        :properties-data.sync="propertiesData"></component-properties-editor>
+    <scenarios-editor></scenarios-editor>
+  </div>
 </template>
 
 <script>
   import ComponentPreview from './component-preview.vue'
   import ComponentPropertiesEditor from './component-properties-editor.vue'
+  import ScenariosEditor from './scenarios-editor.vue'
 
   export default {
     props: ['component'],
     components: {
       ComponentPreview,
-      ComponentPropertiesEditor
+      ComponentPropertiesEditor,
+      ScenariosEditor
     },
     data () {
       return {
@@ -51,6 +56,10 @@
   component-preview-editor {
     display: flex;
     flex-flow: column;
+
+    >* {
+      flex: 1;
+    }
 
     component-preview {
       flex: 1;
