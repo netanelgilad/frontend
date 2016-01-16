@@ -1,13 +1,18 @@
 <template>
-  <template v-if="getComponentsCount() > 0">
-    <components-editor
-        :components="components"
-        :current-component="currentComponent"></components-editor>
+  <template v-if="!isInitialDataLoaded">
+    Loading...
   </template>
   <template v-else>
-    <div class="centered-container">
-      <component-creator-dialog></component-creator-dialog>
-    </div>
+    <template v-if="getComponentsCount() > 0">
+      <components-editor
+          :components="components"
+          :current-component="currentComponent"></components-editor>
+    </template>
+    <template v-else>
+      <div class="centered-container">
+        <component-creator-dialog></component-creator-dialog>
+      </div>
+    </template>
   </template>
 </template>
 
@@ -21,7 +26,7 @@
   import { keys } from 'underscore'
 
   export default {
-    props: ['components', 'currentComponent'],
+    props: ['components', 'currentComponent', 'isInitialDataLoaded'],
     components: {
       ComponentsEditor,
       ComponentCreatorDialog

@@ -15,11 +15,13 @@ Vue.mixin({
   replace: false
 })
 
+/* eslint-disable no-new */
+new Vue({
+  el: 'body',
+  data: () => stores,
+  components: {App}
+})
+
 initComponents().then(() => {
-  /* eslint-disable no-new */
-  new Vue({
-    el: 'body',
-    data: () => stores,
-    components: {App}
-  })
+  stores.isInitialDataLoaded = true
 })

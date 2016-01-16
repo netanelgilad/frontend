@@ -1,24 +1,25 @@
 <template>
   <div class="form-inline">
     <input class="form-control" type="text" id="new-scenario-name" placeholder="Scenario name" v-model="scenario.name"/>
-    <button class="btn btn-raised btn-primary">Save</button>
   </div>
-  <h4>Steps</h4>
-  <div class="form-inline">
-    <template v-for="action in component.actions">
+  <h4>Add a new step</h4>
+  <div>
+    <h5>Choose an action:</h5>
+    <template v-for="action in scenario.actions">
       <label class="checkbox">
         <input type="radio" :value="action" v-model="selectedAction">
         {{ action }}
       </label>
     </template>
-    <input class="form-control" type="text" v-model="newStepName" placeholder="New Step Name" />
+    <h5>Step name:</h5>
+    <input class="form-control" type="text" v-model="newStepName" placeholder="Step name" />
     <button class="btn btn-default"
-            @click="addNewStep(selectedAction, newStepName)"
-            :disabled="!selectedAction">
+            @click="action('addStepToScenario', scenario, newStepName, selectedAction)"
+            :disabled="!isFormValid()">
       Add a new step
     </button>
   </div>
-  <template v-for="step in steps">
+  <template v-for="step in scenario.steps">
     <hr class="seperator" />
     <h5>{{step.name}}</h5>
     <json-editor :json.sync="step.state"></json-editor>
@@ -27,59 +28,24 @@
 
 <script>
   import JsonEditor from './json-editor.vue'
-  import Vue from 'vue'
-  import $ from 'jquery'
+  import { isUndefined } from 'underscore'
 
   export default {
+    props: {
+      scenario: {
+        type: Object,
+        required: false
+      }
+    },
     data () {
       return {
-        component: {
-          properties: ['tasks'],
-          actions: ['addNewTask']
-        },
-        scenario: {
-          name: '',
-          stepsTree: {}
-        },
-        selectedAction: false,
+        selectedAction: undefined,
         newStepName: ''
       }
     },
-    computed: {
-      steps () {
-        let result = []
-        let currentNode = this.$data.scenario.stepsTree
-        while (currentNode) {
-          result.unshift(currentNode)
-          currentNode = currentNode.link ? currentNode.link.node : undefined
-        }
-        return result
-      }
-    },
-    ready () {
-      this.$set('scenario.stepsTree', { name: 'initial', state: this.createState() })
-    },
     methods: {
-      addNewStep (selectedAction, name) {
-        let currentNode = this.$data.scenario.stepsTree
-        while (currentNode.link) {
-          currentNode = currentNode.link.node
-        }
-
-        Vue.set(currentNode, 'link', {
-          action: selectedAction,
-          node: {
-            name,
-            state: $.extend(true, {}, currentNode.state)
-          }
-        })
-      },
-      createState () {
-        let newState = {}
-        this.$data.component.properties.forEach((prop) => {
-          newState[prop] = null
-        })
-        return newState
+      isFormValid () {
+        return !isUndefined(this.$data.selectedAction) && this.$data.newStepName !== ''
       }
     },
     components: {

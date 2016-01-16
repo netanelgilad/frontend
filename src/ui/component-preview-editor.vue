@@ -8,7 +8,7 @@
         v-ref:properties-editor
         :properties="component.properties"
         :properties-data.sync="propertiesData"></component-properties-editor>
-    <scenarios-editor></scenarios-editor>
+    <scenarios-editor :component="component"></scenarios-editor>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import stores from './stores'
 import Component from './component'
 import Firebase from 'firebase'
 import Vue from 'vue'
+import './scenarios'
 
 let db = new Firebase('https://brilliant-fire-9189.firebaseio.com/')
 let components = db.child('components')

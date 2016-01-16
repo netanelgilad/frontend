@@ -1,4 +1,5 @@
 export default {
   components: {},
-  currentComponent: undefined
+  currentComponent: undefined,
+  isInitialDataLoaded: false
 }

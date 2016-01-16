@@ -1,5 +1,6 @@
 import stores from './stores'
 import { findWhere } from 'underscore'
+import Vue from 'vue'
 
 export default class Component {
   constructor ({
@@ -8,7 +9,8 @@ export default class Component {
       style = '',
       dependencies: dependencies = [],
       properties: properties = [],
-      actions: actions = []
+      actions: actions = [],
+      scenarios: scenarios = {}
     }) {
     this.name = name
     this.template = template
@@ -16,6 +18,7 @@ export default class Component {
     this.dependencies = dependencies
     this.properties = properties
     this.actions = actions
+    this.scenarios = scenarios
     this.isSaved = true
   }
 
@@ -42,6 +45,17 @@ export default class Component {
   addAction (action) {
     this.actions.push(action)
     this.isSaved = false
+  }
+
+  upsertScenario (scenario) {
+    Vue.set(this.scenarios,
+      scenario.name,
+      scenario)
+    this.isSaved = false
+  }
+
+  setCurrentEditedScenario (scenario) {
+    Vue.set(this, 'currentEditedScenario', scenario)
   }
 
   getComponentDefinition () {
