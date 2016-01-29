@@ -6,7 +6,8 @@
     <template v-if="getComponentsCount() > 0">
       <components-editor
           :components="components"
-          :current-component="currentComponent"></components-editor>
+          :current-component="currentComponent"
+          :current-running-scenario="currentRunningScenario"></components-editor>
     </template>
     <template v-else>
       <div class="centered-container">
@@ -26,7 +27,7 @@
   import { keys } from 'underscore'
 
   export default {
-    props: ['components', 'currentComponent', 'isInitialDataLoaded'],
+    props: ['components', 'currentComponent', 'isInitialDataLoaded', 'currentRunningScenario'],
     components: {
       ComponentsEditor,
       ComponentCreatorDialog

@@ -1,5 +1,6 @@
 export default {
   components: {},
   currentComponent: undefined,
-  isInitialDataLoaded: false
+  isInitialDataLoaded: false,
+  currentRunningScenario: undefined
 }

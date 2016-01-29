@@ -1,16 +1,36 @@
 import Vue from 'vue'
 import $ from 'jquery'
+import { isUndefined, forEach } from 'underscore'
+
+export const INITIAL_STEP_NAME = 'inital'
 
 export default class Scenario {
-  constructor ({ name, actions = [], stateDefinition = [] }) {
+  constructor ({ name, actions = [], stateDefinition = [], initialStep }) {
     this.name = name
     this.actions = actions
     this.stateDefinition = stateDefinition
 
-    this.initialStep = {
-      name: 'initial',
-      state: this.createState()
+    if (initialStep) {
+      this.initialStep = this.updateNullsInSteps(initialStep)
+    } else {
+      this.initialStep = {
+        name: INITIAL_STEP_NAME,
+        state: this.createState()
+      }
     }
+  }
+
+  updateNullsInSteps (initialStep) {
+    let currentNode = initialStep
+    while (!isUndefined(currentNode)) {
+      forEach(this.stateDefinition, (prop) => {
+        if (isUndefined(currentNode.state[prop])) {
+          currentNode.state[prop] = null
+        }
+      })
+      currentNode = isUndefined(currentNode.link) ? undefined : currentNode.link.node
+    }
+    return initialStep
   }
 
   createState () {
@@ -34,6 +54,16 @@ export default class Scenario {
         state: $.extend(true, {}, currentNode.state)
       }
     })
+  }
+
+  getStateByStep (stepName) {
+    let currentNode = this.initialStep
+
+    while (!isUndefined(currentNode) && currentNode.name !== stepName) {
+      currentNode = isUndefined(currentNode.link) ? undefined : currentNode.link.node
+    }
+
+    return isUndefined(currentNode) ? undefined : currentNode.state
   }
 
   get steps () {

@@ -14,7 +14,10 @@
       <hr class="seperator" />
       <style-editor :current-component="currentComponent"></style-editor>
     </div>
-    <component-preview-editor :component="currentComponent" class="slot"></component-preview-editor>
+    <component-preview-editor
+        :current-running-scenario="currentRunningScenario"
+        :component="currentComponent"
+        class="slot"></component-preview-editor>
 </template>
 
 <script>
@@ -28,7 +31,7 @@
   import ComponentActions from './component-actions.vue'
 
   export default {
-    props: ['components', 'currentComponent'],
+    props: ['components', 'currentComponent', 'currentRunningScenario'],
     components: {
       ComponentActions,
       ComponentPreviewEditor,

@@ -4,9 +4,19 @@
     Create a new scenario
   </button>
   <h3>Scenarios</h3>
-  <ul>
-    <li v-for="scenario in component.scenarios">
-      {{ scenario.name }}
+  <ul class="scenario-list">
+    <li v-for="scenario in component.scenarios"
+        class="scenario-item"
+        :class="{ 'running': scenario.name === currentRunningScenario.?name }">
+      <span>{{ scenario.name }}</span>
+      <i class="material-icons"
+         v-if="scenario.name !== component.currentRunningScenario"
+         @click="action('setCurrentRunningScenarioOf', scenario.name)">
+        play_arrow
+      </i>
+      <i class="material-icons" v-else>replay</i>
+      <i class="material-icons"
+         @click="editScenario(scenario.name)">mode_edit</i>
     </li>
   </ul>
   <div class="modal fade" id="scenario-editor-modal" role="dialog">
@@ -32,10 +42,14 @@
   import { isUndefined } from 'underscore'
 
   export default {
-    props: ['component'],
+    props: ['component', 'propertiesData', 'currentRunningScenario'],
     methods: {
       createNewScenario () {
         Action('createNewScenarioOnComponent')(this.$data.component)
+        $('#scenario-editor-modal').modal('show')
+      },
+      editScenario (scenarioName) {
+        Action('setCurrentEditedScenarioOfComponent')(this.$data.component, scenarioName)
         $('#scenario-editor-modal').modal('show')
       },
       hasCurrentEditedScenario () {
@@ -50,5 +64,22 @@
 
 <style lang="less">
   scenarios-editor {
+    display: flex;
+    flex-flow: column;
+
+    .scenario-list {
+      .scenario-item {
+        i.material-icons {
+          cursor: pointer;
+        }
+      }
+
+      .scenario-item.running {
+        >span {
+          color: blueviolet;
+          cursor: pointer;
+        }
+      }
+    }
   }
 </style>

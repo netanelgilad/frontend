@@ -2,13 +2,19 @@
   <component-preview
       :component="component"
       :preview-data="propertiesData"
-      @action-invoked="openPropertiesEditor()"></component-preview>
-  <div>
+      @action-invoked="openPropertiesEditor()">
+  </component-preview>
+  <div class="preview-editing">
     <component-properties-editor
         v-ref:properties-editor
         :properties="component.properties"
-        :properties-data.sync="propertiesData"></component-properties-editor>
-    <scenarios-editor :component="component"></scenarios-editor>
+        :properties-data.sync="propertiesData">
+    </component-properties-editor>
+    <scenarios-editor
+        :component="component"
+        :current-running-scenario="currentRunningScenario"
+        :properties-data.sync="propertiesData">
+    </scenarios-editor>
   </div>
 </template>
 
@@ -18,7 +24,7 @@
   import ScenariosEditor from './scenarios-editor.vue'
 
   export default {
-    props: ['component'],
+    props: ['component', 'currentRunningScenario'],
     components: {
       ComponentPreview,
       ComponentPropertiesEditor,
@@ -59,6 +65,15 @@
 
     >* {
       flex: 1;
+    }
+
+    .preview-editing {
+      display: flex;
+      flex-flow: column;
+
+      >scenarios-editor {
+        flex: 1;
+      }
     }
 
     component-preview {

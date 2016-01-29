@@ -1,6 +1,7 @@
 import stores from './stores'
-import { findWhere } from 'underscore'
+import { findWhere, forEach } from 'underscore'
 import Vue from 'vue'
+import Scenario from './scenario'
 
 export default class Component {
   constructor ({
@@ -18,6 +19,11 @@ export default class Component {
     this.dependencies = dependencies
     this.properties = properties
     this.actions = actions
+
+    forEach(scenarios, (scenario, name) => {
+      scenarios[name] = new Scenario(scenario)
+    })
+
     this.scenarios = scenarios
     this.isSaved = true
   }
@@ -56,6 +62,14 @@ export default class Component {
 
   setCurrentEditedScenario (scenario) {
     Vue.set(this, 'currentEditedScenario', scenario)
+  }
+
+  getScenarioByName (name) {
+    return findWhere(this.scenarios, { name })
+  }
+
+  setCurrentRunningScenario (scenarioName) {
+    Vue.set(this, 'currentRunningScenario', scenarioName)
   }
 
   getComponentDefinition () {
