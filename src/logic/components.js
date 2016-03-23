@@ -69,3 +69,7 @@ Action('addPropertyToCurrentComponent', (prop) => {
 Action('addActionToCurrentComponent', (action) => {
   stores.currentComponent.addAction(action)
 })
+
+Action('setCurrentRunningScenarioOfComponent', (scenarioName) => {
+  stores.currentComponent.setCurrentRunningScenario(scenarioName)
+})

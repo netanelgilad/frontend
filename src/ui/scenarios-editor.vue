@@ -7,11 +7,11 @@
   <ul class="scenario-list">
     <li v-for="scenario in component.scenarios"
         class="scenario-item"
-        :class="{ 'running': scenario.name === currentRunningScenario.?name }">
+        :class="{ 'running': isRunningScenario(scenario.name) }">
       <span>{{ scenario.name }}</span>
       <i class="material-icons"
          v-if="scenario.name !== component.currentRunningScenario"
-         @click="action('setCurrentRunningScenarioOf', scenario.name)">
+         @click="action('setCurrentRunningScenarioOfComponent', scenario.name)">
         play_arrow
       </i>
       <i class="material-icons" v-else>replay</i>
@@ -54,6 +54,10 @@
       },
       hasCurrentEditedScenario () {
         return !isUndefined(this.$data.component.currentEditedScenario)
+      },
+      isRunningScenario (name) {
+        return this.$data.currentRunningScenario &&
+            this.$data.currentRunningScenario.name === name
       }
     },
     components: {
