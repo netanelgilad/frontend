@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import _ from 'underscore'
+  import * as _ from 'underscore'
 
   export default {
     props: ['component', 'components'],
@@ -32,10 +32,10 @@
     },
     computed: {
       availableDependencies: function () {
-        return _.chain(this.$data.components)
+        return _.chain(this.components)
             .pluck('name')
-            .difference(this.$data.component.dependencies)
-            .without(this.$data.component.name)
+            .difference(this.component.dependencies)
+            .without(this.component.name)
             .value()
       }
     }

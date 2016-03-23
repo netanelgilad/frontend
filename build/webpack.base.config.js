@@ -8,8 +8,10 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
-    modulesDirectories: ['bower_components', 'node_modules']
+    modulesDirectories: ['bower_components', 'node_modules'],
+    extensions: ['', '.ts', '.webpack.js', '.web.js', '.js', '.vue']
   },
+
   module: {
     loaders: [
       {
@@ -17,8 +19,12 @@ module.exports = {
         loader: 'vue'
       },
       {
+        test: /\.ts$/,
+        loader: 'ts'
+      },
+      {
         test: /\.js$/,
-        loader: 'babel!eslint',
+        loader: 'babel!eslint', 
         // make sure to exclude 3rd party code in node_modules
         exclude: [/node_modules/, /bower_components/]
       },
@@ -44,10 +50,14 @@ module.exports = {
 // make sure to adjust your .eslintrc
   vue: {
     loaders: {
-      js: 'babel!eslint'
+      js: 'ts-loader'
     }
-  }
-  ,
+  },
+  
+  ts: {
+    transpileOnly: true
+  },
+  
 // configure babel-loader (for both .js and .vue files).
 // see https://babeljs.io/docs/usage/options/
   babel: {

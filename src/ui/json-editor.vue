@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import AceEditor from './ace-editor.vue'
+  import * as AceEditor from './ace-editor.vue'
   export default {
     props: ['json'],
     data () {
@@ -20,7 +20,7 @@
       }
     },
     ready () {
-      this.updateJSONString(this.$data.json)
+      this.updateJSONString(this.json)
     },
     watch: {
       json (newValue) {
@@ -33,9 +33,9 @@
       jsonString (newValue) {
         if (!this.jsonUpdating) {
           try {
-            this.$data.json = JSON.parse(newValue)
+            this.json = JSON.parse(newValue)
           } catch (e) {
-            this.$data.json = newValue
+            this.json = newValue
           }
           this.jsonStringUpdating = true
         } else {
@@ -45,7 +45,7 @@
     },
     methods: {
       updateJSONString (json) {
-        this.$data.jsonString = JSON.stringify(json, null, 2) || ''
+        this.jsonString = JSON.stringify(json, null, 2) || ''
         this.jsonUpdating = true
       }
     },

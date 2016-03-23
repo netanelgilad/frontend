@@ -26,8 +26,8 @@
 </template>
 
 <script>
-  import ComponentCreatorDialog from './component-creator-dialog.vue'
-  import $ from 'jquery'
+  import * as ComponentCreatorDialog from './component-creator-dialog.vue'
+  import * as $ from 'jquery'
   export default {
     props: ['components', 'currentComponent'],
     ready () {

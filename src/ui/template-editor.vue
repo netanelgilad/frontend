@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import AceEditor from './ace-editor.vue'
+  import * as AceEditor from './ace-editor.vue'
 
   export default {
     props: ['currentComponent'],

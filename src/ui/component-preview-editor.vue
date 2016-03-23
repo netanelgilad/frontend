@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  import ComponentPreview from './component-preview.vue'
-  import ComponentPropertiesEditor from './component-properties-editor.vue'
-  import ScenariosEditor from './scenarios-editor.vue'
+  import * as ComponentPreview from './component-preview.vue'
+  import * as ComponentPropertiesEditor from './component-properties-editor.vue'
+  import * as ScenariosEditor from './scenarios-editor.vue'
 
   export default {
     props: ['component', 'currentRunningScenario'],
@@ -36,7 +36,7 @@
       }
     },
     ready () {
-      this.setupPropertiesData(this.$data.component.properties)
+      this.setupPropertiesData(this.component.properties)
     },
     watch: {
       component (newVal) {
@@ -49,7 +49,7 @@
         properties.forEach((prop) => {
           data[prop] = null
         })
-        this.$data.propertiesData = data
+        this.propertiesData = data
       },
       openPropertiesEditor () {
         this.$refs.propertiesEditor.open()

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import JsonEditor from './json-editor.vue'
-  import $ from 'jquery'
+  import * as JsonEditor from './json-editor.vue'
+  import * as $ from 'jquery'
 
   export default {
     props: {

@@ -6,10 +6,10 @@
 </template>
 
 <script>
-  import $ from 'jquery'
+  import * as $ from 'jquery'
   import { template } from 'underscore'
   import previewTemplate from '../assets/component-preview-template'
-  import less from 'less/lib/less'
+  import * as less from 'less/lib/less'
 
   export default {
     props: {
@@ -23,14 +23,14 @@
       }
     },
     ready () {
-      this.updatePreview(this.$data.component)
+      this.updatePreview(this.component)
     },
     watch: {
       component: { handler: function (newVal) {
         this.updatePreview(newVal)
       }, deep: true},
       previewData: { handler: function () {
-        this.updatePreview(this.$data.component)
+        this.updatePreview(this.component)
       }, deep: true}
     },
     methods: {
@@ -59,7 +59,7 @@
           comp: JSON.stringify(component.getComponentDefinition(), 2),
           style: style,
           properties: this.buildPropertiesString(component.properties),
-          data: 'data: ' + JSON.stringify(this.$data.previewData),
+          data: 'data: ' + JSON.stringify(this.previewData),
           actions: JSON.stringify(component.actions)
         }))
         iDoc.close()

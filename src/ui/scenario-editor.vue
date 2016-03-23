@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import JsonEditor from './json-editor.vue'
+  import * as JsonEditor from './json-editor.vue'
   import { isUndefined } from 'underscore'
 
   export default {

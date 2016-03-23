@@ -21,14 +21,14 @@
 </template>
 
 <script>
-  import TemplateEditor from './template-editor.vue'
-  import EditorActions from './editor-actions.vue'
-  import ComponentsList from './components-list.vue'
-  import ComponentDependencies from './component-dependencies.vue'
-  import ComponentProperties from './component-properties.vue'
-  import StyleEditor from './style-editor.vue'
-  import ComponentPreviewEditor from './component-preview-editor.vue'
-  import ComponentActions from './component-actions.vue'
+  import * as TemplateEditor from './template-editor.vue'
+  import * as EditorActions from './editor-actions.vue'
+  import * as ComponentsList from './components-list.vue'
+  import * as ComponentDependencies from './component-dependencies.vue'
+  import * as ComponentProperties from './component-properties.vue'
+  import * as StyleEditor from './style-editor.vue'
+  import * as ComponentPreviewEditor from './component-preview-editor.vue'
+  import * as ComponentActions from './component-actions.vue'
 
   export default {
     props: ['components', 'currentComponent', 'currentRunningScenario'],

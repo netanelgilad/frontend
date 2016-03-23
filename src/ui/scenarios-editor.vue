@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import ScenarioEditor from './scenario-editor.vue'
-  import $ from 'jquery'
+  import * as ScenarioEditor from './scenario-editor.vue'
+  import * as $ from 'jquery'
   import Action from '../action'
   import { isUndefined } from 'underscore'
 
@@ -45,19 +45,19 @@
     props: ['component', 'propertiesData', 'currentRunningScenario'],
     methods: {
       createNewScenario () {
-        Action('createNewScenarioOnComponent')(this.$data.component)
+        Action('createNewScenarioOnComponent')(this.component)
         $('#scenario-editor-modal').modal('show')
       },
       editScenario (scenarioName) {
-        Action('setCurrentEditedScenarioOfComponent')(this.$data.component, scenarioName)
+        Action('setCurrentEditedScenarioOfComponent')(this.component, scenarioName)
         $('#scenario-editor-modal').modal('show')
       },
       hasCurrentEditedScenario () {
-        return !isUndefined(this.$data.component.currentEditedScenario)
+        return !isUndefined(this.component.currentEditedScenario)
       },
       isRunningScenario (name) {
-        return this.$data.currentRunningScenario &&
-            this.$data.currentRunningScenario.name === name
+        return this.currentRunningScenario &&
+            this.currentRunningScenario.name === name
       }
     },
     components: {
