@@ -20,11 +20,11 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'ts'
+        loader: 'ts-loader!tslint'
       },
       {
         test: /\.js$/,
-        loader: 'babel!eslint', 
+        loader: 'babel!eslint',
         // make sure to exclude 3rd party code in node_modules
         exclude: [/node_modules/, /bower_components/]
       },
@@ -45,19 +45,14 @@ module.exports = {
       }
     ]
   },
-// vue-loader config:
-// lint all JavaScript inside *.vue files with ESLint
-// make sure to adjust your .eslintrc
   vue: {
     loaders: {
       js: 'ts-loader'
     }
   },
-  
   ts: {
     transpileOnly: true
   },
-  
 // configure babel-loader (for both .js and .vue files).
 // see https://babeljs.io/docs/usage/options/
   babel: {

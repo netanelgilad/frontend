@@ -1,9 +1,9 @@
-let actions = {}
+let actions: Object = {};
 
-export default function (name, cb) {
+export default function (name: string, cb?: Function): undefined | Function {
   if (cb) {
-    actions[name] = cb
+    actions[name] = cb;
   } else {
-    return actions[name]
+    return actions[name];
   }
 }

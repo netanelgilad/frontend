@@ -1,17 +1,19 @@
-import stores from './stores'
-import { findWhere, forEach } from 'underscore'
-import Vue from 'vue'
-import Scenario from './scenario'
+import stores from './stores';
+import { findWhere, forEach } from 'underscore';
+import Vue from 'vue';
+import Scenario from './scenario';
 
 export default class Component {
   public name: string;
-  private template;
-  private style;
-  private dependencies;
-  private properties;
-  private actions;
-  private scenarios;
-  private isSaved;
+  public actions: Array<string>;
+  public properties: Array<string>;
+  public scenarios: Array<any>;
+  public currentEditedScenario: string;
+  
+  private template: string;
+  private style: string;
+  private dependencies: Array<string>;
+  private isSaved: boolean;
   
   constructor ({
       name,
@@ -21,86 +23,86 @@ export default class Component {
       properties: properties = [],
       actions: actions = [],
       scenarios: scenarios = {}
-    }) {
-    this.name = name
-    this.template = template
-    this.style = style
-    this.dependencies = dependencies
-    this.properties = properties
-    this.actions = actions
+    }: Object) {
+    this.name = name;
+    this.template = template;
+    this.style = style;
+    this.dependencies = dependencies;
+    this.properties = properties;
+    this.actions = actions;
 
-    forEach(scenarios, (scenario, name) => {
-      scenarios[name] = new Scenario(scenario)
-    })
+    forEach(scenarios, (scenario: any, scenarioName: string) => {
+      scenarios[scenarioName] = new Scenario(scenario);
+    });
 
-    this.scenarios = scenarios
-    this.isSaved = true
+    this.scenarios = scenarios;
+    this.isSaved = true;
   }
 
-  setTemplate (newValue) {
-    this.template = newValue
-    this.isSaved = false
+  public setTemplate (newValue: string): void {
+    this.template = newValue;
+    this.isSaved = false;
   }
 
-  setStyle (newValue) {
-    this.style = newValue
-    this.isSaved = false
+  public setStyle (newValue: string): void {
+    this.style = newValue;
+    this.isSaved = false;
   }
 
-  addDependency (dep) {
-    this.dependencies.push(dep)
-    this.isSaved = false
+  public addDependency (dep: string): void {
+    this.dependencies.push(dep);
+    this.isSaved = false;
   }
 
-  addProperty (prop) {
-    this.properties.push(prop)
-    this.isSaved = false
+  public addProperty (prop: string): void {
+    this.properties.push(prop);
+    this.isSaved = false;
   }
 
-  addAction (action) {
-    this.actions.push(action)
-    this.isSaved = false
+  public addAction (action: string): void {
+    this.actions.push(action);
+    this.isSaved = false;
   }
 
-  upsertScenario (scenario) {
+  public upsertScenario (scenario: any): void {
     Vue.set(this.scenarios,
-      scenario.name,
-      scenario)
-    this.isSaved = false
+            scenario.name,
+            scenario);
+    this.isSaved = false;
   }
 
-  setCurrentEditedScenario (scenario) {
-    Vue.set(this, 'currentEditedScenario', scenario)
+  public setCurrentEditedScenario (scenario: any): void {
+    Vue.set(this, 'currentEditedScenario', scenario);
   }
 
-  getScenarioByName (name) {
-    return findWhere(this.scenarios, { name })
+  public getScenarioByName (name: string): any {
+    return findWhere(this.scenarios, { name });
   }
 
-  setCurrentRunningScenario (scenarioName) {
-    Vue.set(this, 'currentRunningScenario', scenarioName)
+  public setCurrentRunningScenario (scenarioName: string): void {
+    Vue.set(this, 'currentRunningScenario', scenarioName);
   }
 
-  getComponentDefinition () {
-    let components = {}
-    this.dependencies.forEach((dep) => {
-      components[dep] = findWhere(stores.components, { name: dep }).getComponentDefinition()
-    })
+  public getComponentDefinition (): Object {
+    let components: Object = {};
+    this.dependencies.forEach((dep: string) => {
+      components[dep] = findWhere(stores.components, { name: dep }).getComponentDefinition();
+    });
 
     return {
       props: this.properties,
       template: this.template,
       components
-    }
+    };
   }
 
-  getComputedStyle () {
-    let computedStyle = this.name + ' { ' + this.style + ' '
-    this.dependencies.forEach((dep) => {
-      let comp = findWhere(stores.components, { name: dep })
-      computedStyle += comp.getComputedStyle() + ' '
-    })
-    computedStyle += ' }\n'
-    return computedStyle
+  public getComputedStyle (): string {
+    let computedStyle: string = this.name + ' { ' + this.style + ' ';
+    this.dependencies.forEach((dep: string) => {
+      let comp: Component = findWhere(stores.components, { name: dep });
+      computedStyle += comp.getComputedStyle() + ' ';
+    });
+    computedStyle += ' }\n';
+    return computedStyle;
   }
 }
