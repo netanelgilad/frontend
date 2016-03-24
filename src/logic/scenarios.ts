@@ -1,4 +1,4 @@
-import Action from '../action';
+import {Action} from '../action';
 import Scenario, { INITIAL_STEP_NAME } from './scenario';
 import { findWhere } from 'underscore';
 import stores from './stores';

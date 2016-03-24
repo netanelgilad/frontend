@@ -1,4 +1,4 @@
-import Action from '../action';
+import {Action} from '../action';
 import stores from './stores';
 import Component from './component';
 import * as Firebase from 'firebase';

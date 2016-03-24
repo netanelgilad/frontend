@@ -15,7 +15,8 @@
     "firebase": "^2.3.2",
     "jquery": "^2.1.4",
     "underscore": "^1.8.3",
-    "vue": "^1.0.0"
+    "vue": "^1.0.0",
+    "vuex": "^0.6.2"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^0.17.0-rc.2",
