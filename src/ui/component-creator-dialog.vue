@@ -23,7 +23,7 @@
     },
     methods: {
       createComponent () {
-        Action('createNewComponent')(this.$data.newComponentName)
+        Action('createNewComponent')(this.newComponentName)
         this.$dispatch('componentCreated')
         return false
       }

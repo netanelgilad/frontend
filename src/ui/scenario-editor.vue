@@ -45,7 +45,7 @@
     },
     methods: {
       isFormValid () {
-        return !isUndefined(this.$data.selectedAction) && this.$data.newStepName !== ''
+        return !isUndefined(this.selectedAction) && this.newStepName !== ''
       }
     },
     components: {

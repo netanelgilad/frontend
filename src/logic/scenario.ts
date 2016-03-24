@@ -1,11 +1,16 @@
 import Vue from 'vue'
-import $ from 'jquery'
+import * as $ from 'jquery'
 import { isUndefined, forEach } from 'underscore'
 
 export const INITIAL_STEP_NAME = 'inital'
 
 export default class Scenario {
-  constructor ({ name, actions = [], stateDefinition = [], initialStep }) {
+  private name: string;
+  private actions: Array<any>;
+  private stateDefinition;
+  private initialStep;
+  
+  constructor ({ name, actions = [], stateDefinition = [], initialStep = undefined }) {
     this.name = name
     this.actions = actions
     this.stateDefinition = stateDefinition

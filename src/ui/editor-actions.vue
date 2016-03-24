@@ -22,8 +22,8 @@
     methods: {
       // TODO: think of a way that you do not need to write code for this kind of logic
       createComponent () {
-        Action('createNewComponent')(this.$data.newComponentName)
-        this.$data.newComponentName = ''
+        Action('createNewComponent')(this.newComponentName)
+        this.newComponentName = ''
       }
     }
   }

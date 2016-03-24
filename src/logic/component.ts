@@ -4,6 +4,15 @@ import Vue from 'vue'
 import Scenario from './scenario'
 
 export default class Component {
+  public name: string;
+  private template;
+  private style;
+  private dependencies;
+  private properties;
+  private actions;
+  private scenarios;
+  private isSaved;
+  
   constructor ({
       name,
       template: template = '',
